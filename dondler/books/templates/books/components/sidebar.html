@@ -1,0 +1,79 @@
+<body class="sidebar-is-reduced">
+    <header class="l-header">
+        <div class="l-header__inner clearfix">
+            <div class="c-header-icon js-hamburger">
+                <div class="hamburger-toggle" title="Explore more topics of {{subject.subject_name}}"><span
+                        class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+            </div>
+            <div class="c-search">
+                <form method="get" style="display:inherit !important;margin:0px; width:inherit">
+
+                    <input class="c-search__input u-input" style="width:auto"
+                        placeholder="Search for topic you want to learn..." name="q" type="text" />
+                    <input type="submit" class="c-header-icon btn btn-secondary"
+                        style="background: transparent;font-family: 'Pacifico', cursive; font-size: x-large; margin-right:15px; border-right:0px"
+                        value="search">
+                </form>
+            </div>
+            <div class="header-icons-group">
+                <div class="c-header-icon logout"><i class="fa fa-power-off"></i></div>
+            </div>
+        </div>
+    </header>
+    <div class="l-sidebar">
+        <div class="logo">
+            <div class="logo__txt" title="Dondler- Home"><a style="color:white;" href="/">D</a></div>
+        </div>
+        <div class="l-sidebar__content">
+            <nav class="c-menu js-menu">
+                <ul class="u-list">
+                    <li class="c-menu__item has-submenu" data-toggle="tooltip" title="{{subject.subject_name}}">
+                        <div class="c-menu__item__inner" style="padding-left: 10px;">
+                            <div class="c-menu-item__title"><a href="/subject/{{ subject.slug }}"><span
+                                        style="color:white;text-decoration:none;font-weight: 900;">{{ subject.subject_name }}</span></a>
+                            </div>
+                        </div>
+                    </li>
+                    {% for unit in subject.get_units %}
+
+                    <li class="c-menu__item has-submenu" data-toggle="tooltip" title="{{unit.unit_name}}">
+                        <div class="c-menu__item__inner">
+                            <div class="c-menu-item__title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5"
+                                    href="#collapseOne{{unit.id}}" aria-expanded="true" aria-controls="collapseOne5">
+
+                                    <div class="panel-heading" role="tab" id="headingOne5">
+
+                                        <h4 class="panel-title" style="color:white">
+                                            <i class="fa fa-file-text-o"></i> <span
+                                                style="margin-left:15px"><strong>{{unit.unit_name}}</strong></span>
+                                        </h4>
+                                    </div>
+                                </a>
+                                <div id="collapseOne{{unit.id}}" class="panel-collapse collapse" role="tabpanel"
+                                    aria-labelledby="headingOne5" style="background-color:honeydew">
+                                    <div class="panel-body">
+                                        <a href="/subject/unit/{{ unit.slug }}" class="btn btn-primary">Go to Unit
+                                            Details Page</a>
+                                        {% for unit_part in unit.get_unit_parts %}
+                                        <h6 style="color: black;"><strong>{{unit_part.part_head}}</strong></h6>
+                                        <ul style="padding-left: 20px;">
+                                            {% for topic in unit_part.get_topics %}
+                                            <li style="color: black;">
+                                                <a href="/topic/{{ topic.slug }}"> {{topic.topic_name}} </a><br /></li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
