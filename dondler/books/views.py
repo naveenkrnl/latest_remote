@@ -10,16 +10,13 @@ from .forms import TopicResourceForm,SubjectResourceForm
 
 @login_required
 def bookshome(request):
+    context={}
+    related_objects=Subject.objects.filter(semester=request.user.semester).order_by("exam_date")
+    context['subjects'] = related_objects
     if request.user.is_teacher is True:
-        context={}
         # related_objects=Subject.objects.filter(semester=request.user.semester).order_by("exam_date")
         # context['subjects'] = related_objects        
         return render(request,"books/teacher_home.html",context)
-    context={}
-
-    related_objects=Subject.objects.filter(semester=request.user.semester).order_by("exam_date")
-    context['subjects'] = related_objects
-
     #assignments
     context['assignments']=Assignment.objects.filter(semester=request.user.semester)
     

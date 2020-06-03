@@ -56,7 +56,7 @@
                                             </h4>
                                         </div>
                                         <div id="collapseOne{{unit.id}}" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="headingOne5">
+                                            aria-labelledby="headingOne5">j
                                             <div class="panel-body">
                                                 {% for unit_part in unit.get_unit_parts %}
                                                 <h6><strong>{{unit_part.part_head}}</strong></h6>
@@ -79,13 +79,13 @@
     </div>
 </div>
 <script>
-    var content = 'Hi Naveen , Welcome';
+    var content = 'Welcome to Dondler. You can find your latest syllabus for kurukshetra university here with detailed resource for every topic. Click on any subject to continue your search';
 
     var ele = '<span>' + content.split('').join('</span><span>') + '</span>';
 
 
     $(ele).hide().appendTo('temp').each(function (i) {
-        $(this).delay(100 * i).css({
+        $(this).delay(20 * i).css({
             display: 'inline',
             opacity: 0
         }).animate({
